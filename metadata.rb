@@ -1,3 +1,4 @@
+name             "oracle-11g-xe"
 maintainer       "Acquity Group"
 maintainer_email "vince.montalbano@acquitygroup.com"
 license          "Apache 2.0"
