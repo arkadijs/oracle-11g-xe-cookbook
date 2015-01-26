@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/bin/sh -e
 #
 # iptables example configuration script
 #
 # Flush all current rules from iptables
 #
+iptables -P INPUT ACCEPT
 iptables -F
 #
 # Allow SSH connections on tcp port 22
@@ -13,13 +14,12 @@ iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 #
 # Set default policies for INPUT, FORWARD and OUTPUT chains
 #
-# iptables -P INPUT ACCEPT #brute force approach
--A INPUT -m state --state NEW -m tcp -p tcp --dport <%= node['oracle-11g-xe'][:oracle_http_port] -%> -j ACCEPT
+iptables -P INPUT DROP
+iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport <%= node['oracle-11g-xe'][:oracle_http_port] -%> -j ACCEPT
+iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport <%= node['oracle-11g-xe'][:oracle_listener_port] -%> -j ACCEPT
 
 # SMTP port
--A INPUT -m state --state NEW -m tcp -p tcp --dport 25 -j ACCEPT
-# POP3 (just in-case)
--A INPUT -m state --state NEW -m tcp -p tcp --dport 110 -j ACCEPT
+iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 25 -j ACCEPT
 
 iptables -P FORWARD ACCEPT
 iptables -P OUTPUT ACCEPT
