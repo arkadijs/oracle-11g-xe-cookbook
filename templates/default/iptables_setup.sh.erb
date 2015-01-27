@@ -35,6 +35,7 @@ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 # Save settings
 #
 service iptables save
+systemctl enable iptables
 #
 # List rules
 #

@@ -1,5 +1,5 @@
 node.default["oracle-11g-xe"][:temp_dir] = "/oracle_tmp"
-node.default["oracle-11g-xe"][:pack_list] = ["libaio", "bc", "flex", "zip", "unzip", "wget"]
+node.default["oracle-11g-xe"][:pack_list] = ["libaio", "bc", "flex", "zip", "unzip", "wget", "iptables-services"]
 
 node.default["oracle-11g-xe"][:rpm_url] = nil
 
